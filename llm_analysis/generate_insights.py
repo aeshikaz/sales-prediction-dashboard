@@ -10,7 +10,15 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load dataset
-df = pd.read_csv("../data/sales_data.csv", encoding="latin1")
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "sales_data.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
+
+OUTPUT_PATH = os.path.join(OUTPUT_DIR, "insights.txt")
+
+df = pd.read_csv(DATA_PATH, encoding="latin1")
 
 # Create summary statistics for the LLM
 summary = df.describe().to_string()
@@ -41,7 +49,7 @@ response = client.models.generate_content(
 insights = response.text
 
 # Save insights
-with open("../outputs/insights.txt", "w", encoding="utf-8") as f:
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write(insights)
 
 print("\nAI Insights Generated:\n")

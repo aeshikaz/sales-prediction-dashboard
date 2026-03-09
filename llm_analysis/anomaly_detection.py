@@ -8,7 +8,15 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load dataset
-df = pd.read_csv("../data/sales_data.csv", encoding="latin1")
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "sales_data.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
+
+OUTPUT_PATH = os.path.join(OUTPUT_DIR, "anomalies.txt")
+
+df = pd.read_csv(DATA_PATH, encoding="latin1")
 
 # Detect anomalies using simple statistical method
 sales_mean = df["Sales"].mean()
@@ -39,7 +47,7 @@ response = client.models.generate_content(
 
 analysis = response.text
 
-with open("../outputs/anomalies.txt", "w", encoding="utf-8") as f:
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write(analysis)
 
 print("\nAI Anomaly Analysis:\n")

@@ -10,7 +10,15 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load dataset
-df = pd.read_csv("../data/sales_data.csv", encoding="latin1")
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "sales_data.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
+
+OUTPUT_PATH = os.path.join(OUTPUT_DIR, "predictions.txt")
+
+df = pd.read_csv(DATA_PATH, encoding="latin1")
 
 # Convert order date to datetime
 df["Order Date"] = pd.to_datetime(df["Order Date"])
@@ -50,7 +58,7 @@ response = client.models.generate_content(
 analysis = response.text
 
 # Save prediction
-with open("../outputs/predictions.txt", "w", encoding="utf-8") as f:
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     f.write(analysis)
 
 print("\nSales Forecast Analysis:\n")
