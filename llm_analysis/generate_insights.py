@@ -1,29 +1,48 @@
+import os
 import pandas as pd
+from dotenv import load_dotenv
+from google import genai
+
+# Load environment variables
+load_dotenv()
+
+# Initialize Gemini client
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load dataset
 df = pd.read_csv("../data/sales_data.csv", encoding="latin1")
 
-# Basic business metrics
-total_sales = df["Sales"].sum()
-total_profit = df["Profit"].sum()
+# Create summary statistics for the LLM
+summary = df.describe().to_string()
 
-top_region = df.groupby("Region")["Sales"].sum().idxmax()
-top_category = df.groupby("Category")["Sales"].sum().idxmax()
+# Create prompt for Gemini
+prompt = f"""
+You are a business analyst.
 
-summary = f"""
-Sales Summary:
+Here is a statistical summary of a sales dataset:
 
-Total Sales: {total_sales}
-Total Profit: {total_profit}
+{summary}
 
-Top Performing Region: {top_region}
-Top Performing Category: {top_category}
+Based on this data:
+1. Identify important business insights
+2. Detect possible trends
+3. Suggest recommendations for improving sales
+4. Mention any anomalies or unusual patterns
+
+Explain clearly in bullet points.
 """
 
-print(summary)
+# Send to Gemini
+response = client.models.generate_content(
+    model="models/gemini-2.5-flash",
+    contents=prompt
+)
 
-# Save insights to file
-with open("../outputs/insights.txt", "w") as f:
-    f.write(summary)
+insights = response.text
 
-print("Insights saved to outputs/insights.txt")
+# Save insights
+with open("../outputs/insights.txt", "w", encoding="utf-8") as f:
+    f.write(insights)
+
+print("\nAI Insights Generated:\n")
+print(insights)
