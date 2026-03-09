@@ -55,7 +55,7 @@ Tableau Dashboard
 
 ## Features
 
-### 1️⃣ AI Business Insight Generation
+### 1. AI Business Insight Generation
 Automatically analyzes sales data and generates key insights such as:
 
 - Top-performing regions
@@ -65,7 +65,7 @@ Automatically analyzes sales data and generates key insights such as:
 
 ---
 
-### 2️⃣ Sales Forecast Prediction
+### 2. Sales Forecast Prediction
 
 Python calculates growth trends and Gemini explains the future forecast with business recommendations.
 
@@ -75,7 +75,7 @@ Example output:
 
 ## Features
 
-### 1️⃣ AI Business Insight Generation
+### a. AI Business Insight Generation
 Automatically analyzes sales data and generates key insights such as:
 
 - Top-performing regions
@@ -85,7 +85,7 @@ Automatically analyzes sales data and generates key insights such as:
 
 ---
 
-### 2️⃣ Sales Forecast Prediction
+### b. Sales Forecast Prediction
 
 Python calculates growth trends and Gemini explains the future forecast with business recommendations.
 
@@ -95,7 +95,7 @@ Sales are expected to increase by 8–10% next month due to strong growth in the
 
 ---
 
-### 3️⃣ AI Anomaly Detection
+### c. AI Anomaly Detection
 
 The system automatically detects unusual patterns such as:
 
@@ -107,7 +107,7 @@ Gemini explains potential business causes.
 
 ---
 
-### 4️⃣ Natural Language Query Assistant
+### d. Natural Language Query Assistant
 
 Users can ask questions about the data:
 
@@ -115,7 +115,7 @@ Example:
 
 ---
 
-### 3️⃣ AI Anomaly Detection
+### 3. AI Anomaly Detection
 
 The system automatically detects unusual patterns such as:
 
@@ -127,7 +127,7 @@ Gemini explains potential business causes.
 
 ---
 
-### 4️⃣ Natural Language Query Assistant
+### 4. Natural Language Query Assistant
 
 Users can ask questions about the data:
 
@@ -139,7 +139,7 @@ The AI analyzes the dataset and provides a business explanation.
 
 ---
 
-### 5️⃣ AI Business Report Generator
+### 5. AI Business Report Generator
 
 The system combines insights, forecasts, and anomaly analysis into a professional AI-generated business report.
 
@@ -155,29 +155,5 @@ GitHub
 
 ---
 
-## Project Structure
 
-sales-prediction-dashboard
-│
-├── data
-│ └── sales_data.csv
-│
-├── llm_analysis
-│ ├── generate_insights.py
-│ ├── query_ai.py
-│ ├── forecast_engine.py
-│ ├── anomaly_detection.py
-│ └── report_generator.py
-│
-├── outputs
-│ ├── insights.txt
-│ ├── predictions.txt
-│ ├── anomalies.txt
-│ └── ai_sales_report.txt
-│
-├── tableau
-│ └── dashboard.twbx
-│
-├── requirements.txt
-└── README.md
 
