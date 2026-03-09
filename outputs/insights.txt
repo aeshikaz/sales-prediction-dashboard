@@ -1,0 +1,8 @@
+
+Sales Summary:
+
+Total Sales: 2297200.8603
+Total Profit: 286397.0217
+
+Top Performing Region: West
+Top Performing Category: Technology
