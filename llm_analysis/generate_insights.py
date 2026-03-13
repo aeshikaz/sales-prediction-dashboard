@@ -25,19 +25,25 @@ summary = df.describe().to_string()
 
 # Create prompt for Gemini
 prompt = f"""
-You are a business analyst.
+You are a business intelligence analyst.
 
-Here is a statistical summary of a sales dataset:
-
+Dataset summary:
 {summary}
 
-Based on this data:
-1. Identify important business insights
-2. Detect possible trends
-3. Suggest recommendations for improving sales
-4. Mention any anomalies or unusual patterns
+Generate concise business insights.
 
-Explain clearly in bullet points.
+Constraints:
+- Maximum 5 insights
+- Each insight must be 1 sentence
+- Focus on actionable business meaning
+- Avoid long explanations
+
+Format:
+1.
+2.
+3.
+4.
+5.
 """
 
 # Send to Gemini

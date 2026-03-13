@@ -21,32 +21,60 @@ print("Type 'exit' to quit.\n")
 while True:
     question = input("Ask a question about the sales data: ")
 
-    if question.lower() == "exit":
+    if question.lower() in ["exit", "quit"]:
+        print("Exiting AI assistant.")
         break
 
+    if question.strip() == "":
+        print("Please enter a valid question.\n")
+        continue
+
     # Prepare dataset summary
-    data_summary = df.head(50).to_string()
+    data_summary = f"""
+Total rows: {len(df)}
+
+Total Sales: {df['Sales'].sum():,.2f}
+Total Profit: {df['Profit'].sum():,.2f}
+
+Sales by Region:
+{df.groupby('Region')['Sales'].sum().to_string()}
+
+Sales by Category:
+{df.groupby('Category')['Sales'].sum().to_string()}
+
+Top 5 Products by Sales:
+{df.groupby('Product Name')['Sales'].sum().sort_values(ascending=False).head(5).to_string()}
+
+Average Discount: {df['Discount'].mean():.2f}
+"""
 
     prompt = f"""
 You are a business data analyst.
 
-Below is a sample of the sales dataset.
+Here is a summary of a retail sales dataset:
 
 {data_summary}
 
-Use this data to answer the user's question.
+Answer the user's question using this information.
+
+Rules:
+- Answer in 1–2 sentences
+- Be concise and clear
+- Focus on business insights
 
 User Question:
 {question}
-
-Provide a clear business explanation.
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
 
-    print("\nAI Response:\n")
-    print(response.text)
-    print("\n----------------------\n")
+        print("\nAI Response:\n")
+        print(response.text)
+        print("\n----------------------\n")
+
+    except Exception as e:
+        print("Error generating AI response:", e)

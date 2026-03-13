@@ -10,7 +10,12 @@ load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load dataset
-df = pd.read_csv("../data/sales_data.csv", encoding="latin1")
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "data", "sales_data.csv")
+
+df = pd.read_csv(DATA_PATH, encoding="latin1")
 
 # Convert dataset summary to text
 data_summary = df.describe().to_string()
