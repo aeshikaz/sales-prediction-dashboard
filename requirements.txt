@@ -1,4 +1,5 @@
+flask
 pandas
-openai
 python-dotenv
-google-generativeai
+google-genai
+gunicorn
