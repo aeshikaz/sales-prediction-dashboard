@@ -4,6 +4,9 @@ An AI-powered sales analytics platform that combines Python data analysis, Googl
 
 ---
 
+## Live Demo
+**[View Live Dashboard] sales-prediction-dashboard-production.up.railway.app**
+
 ## Project Overview
 
 This project demonstrates how Large Language Models (LLMs) can be integrated with data analytics pipelines to provide intelligent business insights.
