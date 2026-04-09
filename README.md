@@ -5,7 +5,9 @@ An AI-powered sales analytics platform that combines Python data analysis, Googl
 ---
 
 ## Live Demo
-**[View Live Dashboard] sales-prediction-dashboard-production.up.railway.app**
+[View Live Dashboard](https://sales-prediction-dashboard-production.up.railway.app)
+
+---
 
 ## Project Overview
 
